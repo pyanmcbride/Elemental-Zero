@@ -3,7 +3,6 @@
 [ext_resource path="res://ElementalZeroTheme.tres" type="Theme" id=1]
 [ext_resource path="res://WindowResizing.gd" type="Script" id=2]
 [ext_resource path="res://MenuButtons.gd" type="Script" id=3]
-
 [node name="Main" type="Node2D"]
 
 [node name="Control" type="Control" parent="."]
