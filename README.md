@@ -5,4 +5,7 @@ Cant wait till this releases
 
 # Updates
 
-- Alpha 0.01 (00.0.01)
+<h3> Alpha 0.01 (00.0.01) </h3>
+
+- Added Credits and Quit Buttons
+- Added Update Log
