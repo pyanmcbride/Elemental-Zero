@@ -1,18 +1,86 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ElementalZeroTheme.tres" type="Theme" id=1]
 [ext_resource path="res://WindowResizing.gd" type="Script" id=2]
-[ext_resource path="res://Fonts/Rubik/Rubik-Black.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://MenuButtons.gd" type="Script" id=3]
+[ext_resource path="res://Textures/Godot Logos/logo_small_color_light.png" type="Texture" id=4]
+[ext_resource path="res://Fonts/Rubik/Rubik-Italic.ttf" type="DynamicFontData" id=5]
 
-[sub_resource type="DynamicFont" id=1]
-size = 75
-outline_size = 10
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 3 )
+[sub_resource type="Animation" id=8]
+resource_name = "CreditScreenFadeIn"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenuControl/CreditsScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "CreditsScreenFadeOut"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenuControl/CreditsScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainMenuControl/CreditsScreen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="StyleBoxLine" id=1]
+color = Color( 0.705882, 0.705882, 0.705882, 1 )
+thickness = 2
+
+[sub_resource type="DynamicFont" id=7]
+size = 28
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="Main" type="Node2D"]
 
-[node name="Control" type="Control" parent="."]
+[node name="MenuAnimations" type="AnimationPlayer" parent="."]
+anims/CreditScreenFadeIn = SubResource( 8 )
+anims/CreditsScreenFadeOut = SubResource( 9 )
+anims/RESET = SubResource( 10 )
+
+[node name="MainMenuControl" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 1920.0
@@ -23,35 +91,209 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="Control"]
+[node name="MainMenuPanel" type="PanelContainer" parent="MainMenuControl"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="Control/PanelContainer"]
+[node name="MainMenuCenter" type="CenterContainer" parent="MainMenuControl/MainMenuPanel"]
 margin_right = 1920.0
 margin_bottom = 1080.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/CenterContainer"]
+[node name="MenuButtons" type="VBoxContainer" parent="MainMenuControl/MainMenuPanel/MainMenuCenter"]
 margin_left = 477.0
-margin_top = 414.0
+margin_top = 380.0
 margin_right = 1442.0
-margin_bottom = 666.0
+margin_bottom = 700.0
+script = ExtResource( 3 )
 
-[node name="Label" type="Label" parent="Control/PanelContainer/CenterContainer/VBoxContainer"]
+[node name="TitleText" type="Label" parent="MainMenuControl/MainMenuPanel/MainMenuCenter/MenuButtons"]
 margin_right = 965.0
 margin_bottom = 152.0
 text = "Elemental Zero"
 
-[node name="Button" type="Button" parent="Control/PanelContainer/CenterContainer/VBoxContainer"]
+[node name="StartNewGame" type="Button" parent="MainMenuControl/MainMenuPanel/MainMenuCenter/MenuButtons"]
 margin_top = 156.0
 margin_right = 965.0
-margin_bottom = 252.0
-theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 1 )
-text = "Play"
+margin_bottom = 188.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Start New Game"
+
+[node name="LoadGame" type="Button" parent="MainMenuControl/MainMenuPanel/MainMenuCenter/MenuButtons"]
+margin_top = 192.0
+margin_right = 965.0
+margin_bottom = 224.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Load Game"
+
+[node name="CreditsButton" type="Button" parent="MainMenuControl/MainMenuPanel/MainMenuCenter/MenuButtons"]
+margin_top = 228.0
+margin_right = 965.0
+margin_bottom = 260.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Credits"
+
+[node name="QuitSep" type="HSeparator" parent="MainMenuControl/MainMenuPanel/MainMenuCenter/MenuButtons"]
+margin_top = 264.0
+margin_right = 965.0
+margin_bottom = 284.0
+custom_constants/separation = 20
+custom_styles/separator = SubResource( 1 )
+
+[node name="QuitGame" type="Button" parent="MainMenuControl/MainMenuPanel/MainMenuCenter/MenuButtons"]
+margin_top = 288.0
+margin_right = 965.0
+margin_bottom = 320.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Quit Elemental"
+
+[node name="CreditsScreen" type="Control" parent="MainMenuControl"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 1920, 1080 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsPanel" type="PanelContainer" parent="MainMenuControl/CreditsScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsGridBox" type="GridContainer" parent="MainMenuControl/CreditsScreen/CreditsPanel"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsTitle" type="Label" parent="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox"]
+margin_right = 1920.0
+margin_bottom = 152.0
+size_flags_horizontal = 3
+text = "Elemental Zero was made by:"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox"]
+margin_top = 156.0
+margin_right = 1920.0
+margin_bottom = 188.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsQuit" type="Button" parent="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox/CenterContainer"]
+margin_left = 842.0
+margin_right = 1078.0
+margin_bottom = 32.0
+focus_mode = 0
+size_flags_horizontal = 0
+text = "Back to Main Menu"
+
+[node name="CreditsVBox" type="VBoxContainer" parent="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox"]
+margin_top = 192.0
+margin_right = 1920.0
+margin_bottom = 876.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsText" type="Label" parent="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox/CreditsVBox"]
+margin_top = 188.0
+margin_right = 1920.0
+margin_bottom = 495.0
+text = "CreateSource and
+anmcbride"
+align = 1
+
+[node name="GodotCredit" type="Control" parent="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox"]
+margin_top = 880.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 0, 200 )
+
+[node name="GodotCreditBox" type="VBoxContainer" parent="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox/GodotCredit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MadeWithGodot" type="HBoxContainer" parent="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox/GodotCredit/GodotCreditBox"]
+margin_top = 5.0
+margin_right = 1920.0
+margin_bottom = 157.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox/GodotCredit/GodotCreditBox/MadeWithGodot"]
+margin_left = 313.0
+margin_right = 1003.0
+margin_bottom = 152.0
+size_flags_vertical = 1
+text = "Made with:"
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox/GodotCredit/GodotCreditBox/MadeWithGodot"]
+margin_left = 1007.0
+margin_right = 1607.0
+margin_bottom = 152.0
+rect_min_size = Vector2( 600, 0 )
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LicenseCenter" type="CenterContainer" parent="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox/GodotCredit/GodotCreditBox"]
+margin_top = 161.0
+margin_right = 1920.0
+margin_bottom = 195.0
+
+[node name="LicenseBut" type="Button" parent="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox/GodotCredit/GodotCreditBox/LicenseCenter"]
+margin_left = 831.0
+margin_right = 1088.0
+margin_bottom = 34.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color_focus = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 2 )
+text = "View Godot License"
+
+[connection signal="animation_finished" from="MenuAnimations" to="MainMenuControl" method="_on_MenuAnimations_animation_finished"]
+[connection signal="pressed" from="MainMenuControl/MainMenuPanel/MainMenuCenter/MenuButtons/CreditsButton" to="MainMenuControl" method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="MainMenuControl/MainMenuPanel/MainMenuCenter/MenuButtons/QuitGame" to="MainMenuControl/MainMenuPanel/MainMenuCenter/MenuButtons" method="_on_QuitGame_pressed"]
+[connection signal="pressed" from="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox/CenterContainer/CreditsQuit" to="MainMenuControl" method="_on_CreditsQuit_pressed"]
+[connection signal="pressed" from="MainMenuControl/CreditsScreen/CreditsPanel/CreditsGridBox/GodotCredit/GodotCreditBox/LicenseCenter/LicenseBut" to="MainMenuControl" method="_on_LicenseBut_pressed"]
