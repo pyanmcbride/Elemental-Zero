@@ -4,7 +4,6 @@ Elemental Zero is the next up and coming version of elemental games! Originating
 Cant wait till this releases
 
 # Updates
-<h3> Alpha 0.01 </h3>
+<h3> Alpha 0.02 </h3>
 
-- Added Credit and Quit Buttons
-- Added Update Log
+- Implimented Webhook to CreateSource's Server
