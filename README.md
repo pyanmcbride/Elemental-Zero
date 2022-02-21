@@ -9,7 +9,6 @@ Currently being worked on by CreateSource and anmcbride.
 Made with Godot!
 
 # Updates
-<h3> Alpha 0.01 </h3>
+<h3> Alpha 0.02 </h3>
 
-- Added Credit and Quit Buttons
-- Added Update Log
+- Added a "Game Screen"

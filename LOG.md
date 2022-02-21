@@ -4,3 +4,6 @@
 # Alpha 0.01 (00.0.01)
 - Added Credit and Quit Buttons
 - Added Update Log
+
+# Alpha 0.02
+- Implimented Webhook to CreateSource's Server

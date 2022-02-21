@@ -2,6 +2,7 @@ extends Control
 
 onready var animator= $"../MenuAnimations"
 onready var credits = $CreditsScreen
+onready var game = $GameScreen
 
 func _ready():
 	# warning-ignore:return_value_discarded
@@ -27,3 +28,7 @@ func _on_LicenseBut_pressed():
 func _on_MenuAnimations_animation_finished(anim_name):
 	if anim_name == "CreditsScreenFadeOut":
 		credits.hide()
+
+func _on_StartNewGame_pressed():
+	game.show()
+	animator.play("CreditScreenFadeIn")
