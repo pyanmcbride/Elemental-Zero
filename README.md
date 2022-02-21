@@ -3,7 +3,12 @@ Elemental Zero is the next up and coming version of elemental games! Originating
 
 Cant wait till this releases
 
+# Info
+Currently being worked on by CreateSource and anmcbride.
+
+Made with Godot!
+
 # Updates
 <h3> Alpha 0.02 </h3>
 
-- Implimented Webhook to CreateSource's Server
+- Added a "Game Screen"
